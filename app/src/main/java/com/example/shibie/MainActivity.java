@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView=null;
     private TextView textView=null;
     private Button button=null;
+    private Button button2=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +49,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bitmap=func1(bitmap);
-                //binarization(bitmap);
+                bitmap=binarization(bitmap);
                 showPicture(bitmap);
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCookieAndPicture();
             }
         });
     }
@@ -58,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         imageView=(ImageView)findViewById(R.id.picture);
         textView=(TextView)findViewById(R.id.textview);
         button=(Button)findViewById(R.id.button);
-
+        button2=(Button)findViewById(R.id.button2);
     }
 
     private void getCookieAndPicture() {//获取cookie
@@ -82,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     String __VIEWSTATEline=null;
                     String __EVENTVALIDATIONline=null;
                     while((line=reader.readLine())!=null){
-                        Log.d("clp",line);
+                        //Log.d("clp",line);
                         if(line.indexOf("__VIEWSTATE")!=-1){
                             __VIEWSTATEline=line;
                         }
@@ -91,23 +99,23 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     }
-                    Log.d("clp",__VIEWSTATEline);
-                    Log.d("clp",__EVENTVALIDATIONline);
+                    //Log.d("clp",__VIEWSTATEline);
+                    //Log.d("clp",__EVENTVALIDATIONline);
 
                     __VIEWSTATE=__VIEWSTATEline.substring(__VIEWSTATEline.indexOf("value=")+7,__VIEWSTATEline.length()-4);
-                    Log.d("clp","处理过后的="+__VIEWSTATE);
+                    //Log.d("clp","处理过后的="+__VIEWSTATE);
 
                     __EVENTVALIDATION=__EVENTVALIDATIONline.substring(__EVENTVALIDATIONline.indexOf("value=")+7,__EVENTVALIDATIONline.length()-4);
-                    Log.d("clp","处理过后的="+__EVENTVALIDATION);
+                    //Log.d("clp","处理过后的="+__EVENTVALIDATION);
 
                     String cookieAll = response.headers("Set-Cookie").get(0);
-                    Log.d("clp","\n cookie字段="+cookieAll);
+                    //Log.d("clp","\n cookie字段="+cookieAll);
                     //在这一步获取到形如  ASP.NET_SessionId=jxlbbbmkih40pzd40htwvu5r; path=/; HttpOnly 这样的cookie，但是我们只需要分号之前的
 
                     String[] cookieList = cookieAll.split(";");
                     //用分号分割
                     cookie = cookieList[0];
-                    Log.d("clp","\n"+cookie);
+                    //Log.d("clp","\n"+cookie);
 
 
                     //下一步就是利用此cookie去获取图片啦
@@ -200,13 +208,19 @@ public class MainActivity extends AppCompatActivity {
         height=bitmap.getHeight();
 
         int test[][]=new int[width][height];
+        for (int i=0;i<width;i++){
+            for(int j=0;j<height;j++){
+                test[i][j]=-1;
+            }
+        }
+
         Log.d("clp","宽度："+String.valueOf(width)+"\n高度："+String.valueOf(height));
 
         for (int i=0;i<width;i++){
             for(int j=0;j<height;j++){
                 int pixel=bitmap.getPixel(i,j);
-                Log.d("clp","像素值"+"宽度："+String.valueOf(i)+"高度："+String.valueOf(j)+"  "+String.valueOf(pixel));
-                if(pixel==-1580057){
+                //Log.d("clp","像素值"+"宽度："+String.valueOf(i)+"高度："+String.valueOf(j)+"  "+String.valueOf(pixel));
+                if(pixel==-1){
                     test[i][j]=1;
                 }else{
                     test[i][j]=0;
@@ -216,9 +230,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d("clp","结束");
 
         String line="";
-        for (int i=0;i<width;i++){
-            for(int j=0;j<height;j++) {
-                line=line+String.valueOf(test[i][j]);
+        for (int i=1;i<height;i++){
+            for(int j=1;j<width;j++) {
+                line=line+String.valueOf(test[j][i]);
             }
             Log.d("clp",line);
             line="";
@@ -227,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
         //-1580057
     }
 
-    public void binarization(Bitmap img) {
+    public Bitmap binarization(Bitmap img) {
         int width = img.getWidth();
         int height = img.getHeight();
         int area = width * height;
@@ -319,6 +333,6 @@ public class MainActivity extends AppCompatActivity {
 
         Bitmap temp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         temp.setPixels(pix, 0, width, 0, 0, width, height);
-        imageView.setImageBitmap(temp);
+        return temp;
     }
 }
