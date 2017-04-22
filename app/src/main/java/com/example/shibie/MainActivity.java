@@ -238,7 +238,142 @@ public class MainActivity extends AppCompatActivity {
             line="";
         }
 
-        //-1580057
+
+        int test2[]=new int[width];
+        String str="";
+        int count=0;
+
+        for (int i=1;i<height;i++){
+            for(int j=1;j<width;j++) {
+                test2[j]= test2[j]+test[j][i];
+            }
+
+        }
+
+        line="";
+        for (int i=1;i<width;i++){
+            if(test2[i]==29){
+                line=line+" ";
+                str=str+"0";
+                continue;
+            }
+            str=str+"#";
+            count++;
+            line=line+String.valueOf(test2[i])+"\t";
+        }
+        Log.d("clp",line);
+
+        Log.d("clp",str);
+
+        Log.d("clp",String.valueOf(str.split("#").length));
+        Log.d("clp",String.valueOf(count));
+
+        int number10=1;
+        int number11=1;
+
+        int number20=1;
+        int number21=1;
+
+        int number30=1;
+        int number31=1;
+
+        int number40=1;
+        int number41=1;
+
+        boolean hasFourNums=false;
+
+
+
+
+        /*---------------------------1-------------------------------*/
+        for(int i=1;i<width;i++){
+            if(test2[i]!=29){
+                Log.d("clp",String.valueOf(test2[i])+" "+ String.valueOf(i));
+                number10=i;
+                Log.d("clp","number10="+String.valueOf(number10));
+                break;
+            }
+        }
+
+        for(int i=number10+1;i<width;i++){
+            if(test2[i]==29){
+                number11=i-1;
+                Log.d("clp","number10="+String.valueOf(number11));
+                break;
+            }
+        }
+
+        /*---------------------------2-------------------------------*/
+        for(int i=number11+1;i<width;i++){
+            if(test2[i]!=29){
+                number20=i;
+                Log.d("clp","number20="+String.valueOf(number20));
+                break;
+            }
+        }
+
+        for(int i=number20+1;i<width;i++){
+            if(test2[i]==29){
+                number21=i-1;
+                Log.d("clp","number21="+String.valueOf(number21));
+                break;
+            }
+        }
+
+        /*---------------------------3-------------------------------*/
+        for(int i=number21+1;i<width;i++){
+            if(test2[i]!=29){
+                number30=i;
+                Log.d("clp","number30="+String.valueOf(number30));
+                break;
+            }
+        }
+
+        for(int i=number30+1;i<width;i++){
+            if(test2[i]==29){
+                number31=i-1;
+                Log.d("clp","number31="+String.valueOf(number31));
+                break;
+            }
+        }
+
+        /*---------------------------4-------------------------------*/
+        for(int i=number31+1;i<width;i++){
+            if(test2[i]!=29){
+                number40=i;
+                Log.d("clp","number40="+String.valueOf(number40));
+                break;
+            }
+        }
+
+        for(int i=number40+1;i<width;i++){
+            if(test2[i]==29){
+                number41=i-1;
+                Log.d("clp","number41="+String.valueOf(number41));
+                break;
+            }
+        }
+
+        if(number11!=1&&number21!=1&&number31!=1&&number41!=1){
+            hasFourNums=true;
+            Log.d("clp","四个数");
+        }
+
+        if(hasFourNums){
+            //确保一定是四个数字
+            String checkNumber="识别的数字=";
+            checkNumber=checkNumber+identify(number10,test2);
+            checkNumber=checkNumber+identify(number20,test2);
+            checkNumber=checkNumber+identify(number30,test2);
+            checkNumber=checkNumber+identify(number40,test2);
+            Log.d("clp",checkNumber);
+            textView.setText(checkNumber);
+        }
+
+
+
+
+
     }
 
     public Bitmap binarization(Bitmap img) {
@@ -334,5 +469,108 @@ public class MainActivity extends AppCompatActivity {
         Bitmap temp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         temp.setPixels(pix, 0, width, 0, 0, width, height);
         return temp;
+    }
+
+    private String identify(int i,int test2[]){
+        String checkNumber="";
+        if (
+                (test2[i]==26||test2[i]==27||test2[i]==28)&&
+                        (test2[i+1]==26||test2[i+1]==27)&&
+                        (test2[i+2]>=24&&test2[i+2]<=27)&&
+                        (test2[i+3]==15||test2[i+3]==16||test2[i+3]==19||test2[i+3]==20||test2[i+3]==16)&&
+                        (test2[i+4]==15||test2[i+4]==16||test2[i+4]==19)
+                )   {
+            checkNumber=checkNumber+"1";
+        }else if(
+                (test2[i]>=23&&test2[i]<=28)&&
+                        (test2[i+1]==22||test2[i+1]==23)&&
+                        (test2[i+2]==20||test2[i+2]==21||test2[i+2]==23||test2[i+2]==24)&&
+                        (test2[i+3]==21||test2[i+3]==24||test2[i+3]==25)&&
+                        (test2[i+4]==21||test2[i+4]==22||test2[i+4]==24)&&
+                        (test2[i+5]==21||test2[i+5]==22||test2[i+5]==23||test2[i+5]==24)&&
+                        (test2[i+6]>=18&&test2[i+6]<=23)&&
+                        (test2[i+7]>=20&&test2[i+7]<=23)
+                ){
+            checkNumber=checkNumber+"2";
+        }else if(
+                (test2[i]>=23&&test2[i]<=26)&&
+                        (test2[i+1]>=22&&test2[i+1]<=25)&&
+                        (test2[i+2]>=21&&test2[i+2]<=25)&&
+                        (test2[i+3]>=23&&test2[i+3]<=26)&&
+                        (test2[i+4]>=23&&test2[i+4]<=26)&&
+                        (test2[i+5]>=18&&test2[i+5]<=26)&&
+                        (test2[i+6]>=16&&test2[i+6]<=21)
+                ){
+            checkNumber=checkNumber+"3";
+        }else if(
+                (test2[i]>=26&&test2[i]<=28)&&
+                        (test2[i+1]>=24&&test2[i+1]<=26)&&
+                        (test2[i+2]>=24&&test2[i+2]<=26)&&
+                        (test2[i+3]>=23&&test2[i+3]<=27)&&
+                        (test2[i+4]>=23&&test2[i+4]<=27)&&
+                        (test2[i+5]>=15&&test2[i+5]<=27)&&
+                        (test2[i+6]>=15&&test2[i+6]<=16)&&
+                        (test2[i+7]>=15&&test2[i+7]<=27)
+                ){
+            checkNumber=checkNumber+"4";
+        }else if(
+                (test2[i]>=24&&test2[i]<=28)&&
+                        (test2[i+1]>=18&&test2[i+1]<=24)&&
+                        (test2[i+2]>=18&&test2[i+2]<=25)&&
+                        (test2[i+3]>=22&&test2[i+3]<=24)&&
+                        (test2[i+4]>=23&&test2[i+4]<=24)&&
+                        (test2[i+5]>=22&&test2[i+5]<=24)&&
+                        (test2[i+6]>=18&&test2[i+6]<=23)&&
+                        (test2[i+7]>=19&&test2[i+7]<=21)
+                ){
+            checkNumber=checkNumber+"5";
+        }else if(
+                (test2[i]>=21&&test2[i]<=27)&&
+                        (test2[i+1]>=17&&test2[i+1]<=22)&&
+                        (test2[i+2]>=15&&test2[i+2]<=25)&&
+                        (test2[i+3]>=21&&test2[i+3]<=26)&&
+                        (test2[i+4]>=23&&test2[i+4]<=27)&&
+                        (test2[i+5]>=22&&test2[i+5]<=27)&&
+                        (test2[i+6]>=17&&test2[i+6]<=26)&&
+                        (test2[i+7]>=19&&test2[i+7]<=23)
+                ){
+            checkNumber=checkNumber+"6";
+        }else if(
+                (test2[i]>=24&&test2[i]<=28)&&
+                        (test2[i+1]>=26&&test2[i+1]<=27)&&
+                        (test2[i+2]>=21&&test2[i+2]<=25)&&
+                        (test2[i+3]>=19&&test2[i+3]<=25)&&
+                        (test2[i+4]>=20&&test2[i+4]<=25)&&
+                        (test2[i+5]>=21&&test2[i+5]<=25)&&
+                        (test2[i+6]>=23&&test2[i+6]<=25)&&
+                        (test2[i+7]>=24&&test2[i+7]<=26)
+                ){
+            checkNumber=checkNumber+"7";
+        }else if(
+                (test2[i]>=21&&test2[i]<=28)&&
+                        (test2[i+1]>=17&&test2[i+1]<=21)&&
+                        (test2[i+2]>=17&&test2[i+2]<=19)&&
+                        (test2[i+3]>=19&&test2[i+3]<=23)&&
+                        (test2[i+4]>=23&&test2[i+4]<=25)&&
+                        (test2[i+5]>=20&&test2[i+5]<=24)&&
+                        (test2[i+6]>=15&&test2[i+6]<=24)&&
+                        (test2[i+7]>=18&&test2[i+7]<=21)
+                ){
+            checkNumber=checkNumber+"8";
+        }else if(
+                (test2[i]>=19&&test2[i]<=27)&&
+                        (test2[i+1]>=17&&test2[i+1]<=23)&&
+                        (test2[i+2]>=19&&test2[i+2]<=27)&&
+                        (test2[i+3]>=19&&test2[i+3]<=27)&&
+                        (test2[i+4]>=25&&test2[i+4]<=27)&&
+                        (test2[i+5]>=23&&test2[i+5]<=27)&&
+                        (test2[i+6]>=17&&test2[i+6]<=27)&&
+                        (test2[i+7]>=18&&test2[i+7]<=25)
+                ){
+            checkNumber=checkNumber+"0";
+        }else{
+            checkNumber=checkNumber+"无法匹配";
+        }
+        return checkNumber;
     }
 }
