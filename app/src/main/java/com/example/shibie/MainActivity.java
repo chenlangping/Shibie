@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bitmap=func1(bitmap);
+                //bitmap=func1(bitmap);
                 bitmap=binarization(bitmap);
                 showPicture(bitmap);
             }
@@ -391,13 +391,13 @@ public class MainActivity extends AppCompatActivity {
         int back = 0;
         int[] pix = new int[width * height];
         img.getPixels(pix, 0, width, 0, 0, width, height);
-        for (int i = 1; i < width; i++) { // 不算边界行和列，为避免越界
-            for (int j = 1; j < height; j++) {
+        for (int i = 0; i < width; i++) { // 不算边界行和列，为避免越界
+            for (int j = 0; j < height; j++) {
                 int x = j * width + i;
                 int r = (pix[x] >> 16) & 0xff;
                 int g = (pix[x] >> 8) & 0xff;
                 int b = pix[x] & 0xff;
-                pixelGray = (int) (0.3 * r + 0.59 * g + 0.11 * b);// 计算每个坐标点的灰度
+                pixelGray = (int) (0.33 * r + 0.33 * g + 0.33 * b);// 计算每个坐标点的灰度
                 gray[i][j] = (pixelGray << 16) + (pixelGray << 8) + (pixelGray);
                 graysum += pixelGray;
             }
@@ -474,11 +474,11 @@ public class MainActivity extends AppCompatActivity {
     private String identify(int i,int test2[]){
         String checkNumber="";
         if (
-                (test2[i]==26||test2[i]==27||test2[i]==28)&&
-                        (test2[i+1]==26||test2[i+1]==27)&&
-                        (test2[i+2]>=24&&test2[i+2]<=27)&&
-                        (test2[i+3]==15||test2[i+3]==16||test2[i+3]==19||test2[i+3]==20||test2[i+3]==16)&&
-                        (test2[i+4]==15||test2[i+4]==16||test2[i+4]==19)
+                (test2[i]>=26&&test2[i]<=28)&&
+                        (test2[i+1]>=26&&test2[i+1]<=27)&&
+                        (test2[i+2]>=20&&test2[i+2]<=27)&&
+                        (test2[i+3]>=15&&test2[i+3]<=26)&&
+                        (test2[i+4]>=15&&test2[i+4]<=28)
                 )   {
             checkNumber=checkNumber+"1";
         }else if(
