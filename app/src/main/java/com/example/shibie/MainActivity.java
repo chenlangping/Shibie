@@ -693,15 +693,7 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+4]>=25&&test2[i+4]<=27)&&
                         (test2[i+5]>=23&&test2[i+5]<=27)&&
                         (test2[i+6]>=17&&test2[i+6]<=27)&&
-                        (test2[i+7]>=18&&test2[i+7]<=25)) /*||
-                        ((Math.abs(sumLine[flag][number1]-sumLine[flag][number2]) <= 2 )&&
-                                (Math.abs(sumLine[flag][number1 + 1]-sumLine[flag][number2 - 1]) <= 2) &&
-                                (Math.abs(sumLine[flag][number1 + 2]-sumLine[flag][number2 - 2]) <= 2) &&
-                                (Math.abs(sumLine[flag][number1 + 3]-sumLine[flag][number2 - 3]) <= 2) &&
-                                (Math.abs(sumLine[flag][number1 + 4]-sumLine[flag][number2 - 4]) <= 2) &&
-                                (Math.abs(sumLine[flag][number1 + 5]-sumLine[flag][number2 - 5]) <= 2) &&
-                                (Math.abs(sumLine[flag][number1 + 6]-sumLine[flag][number2 - 6]) <= 2)
-                                )*/
+                        (test2[i+7]>=18&&test2[i+7]<=25))
                 ){
             checkNumber=checkNumber+"0";
         }else{
