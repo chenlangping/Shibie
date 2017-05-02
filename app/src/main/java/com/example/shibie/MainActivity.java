@@ -561,11 +561,11 @@ public class MainActivity extends AppCompatActivity {
     private String identify(int flag,int i,int number1, int number2,int test2[],int sumLine[][]){
         String checkNumber="";
         if (
-                ((test2[i]>=26&&test2[i]<=28)&&
+                /*((test2[i]>=26&&test2[i]<=28)&&
                         (test2[i+1]>=26&&test2[i+1]<=27)&&
                         (test2[i+2]>=20&&test2[i+2]<=27)&&
                         (test2[i+3]>=15&&test2[i+3]<=26)&&
-                        (test2[i+4]>=15&&test2[i+4]<=28))||
+                        (test2[i+4]>=15&&test2[i+4]<=28))||*/
                         ( (sumLine[flag][number1] >= 3&&sumLine[flag][number1] <= 4)&&
                                 (sumLine[flag][number1+1] >= 2&& sumLine[flag][number1+1] <=3)&&
                                 (sumLine[flag][number2] == sumLine[flag][number2 - 1])&&
@@ -586,10 +586,10 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+4]==21||test2[i+4]==22||test2[i+4]==24)&&
                         (test2[i+5]==21||test2[i+5]==22||test2[i+5]==23||test2[i+5]==24)&&
                         (test2[i+6]>=18&&test2[i+6]<=23)&&
-                        (test2[i+7]>=20&&test2[i+7]<=23) )/* ||
-                        (sumLine[flag][number2] == 0 && sumLine[flag][number2 - 1] == 0
+                        (test2[i+7]>=20&&test2[i+7]<=23) )||
+                        (sumLine[flag][number2] == 0 || sumLine[flag][number2 - 1] == 0
 
-                        )*/
+                        )
                 ){
             checkNumber=checkNumber+"2";
         }else if(
@@ -599,17 +599,7 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+3]>=23&&test2[i+3]<=26)&&
                         (test2[i+4]>=23&&test2[i+4]<=26)&&
                         (test2[i+5]>=18&&test2[i+5]<=26)&&
-                        (test2[i+6]>=16&&test2[i+6]<=21))/* ||
-                        ((Math.abs(sumLine[flag][number1]-sumLine[flag][number2]) <= 2 )&&
-                                (Math.abs(sumLine[flag][number1 + 1]-sumLine[flag][number2 - 1]) <= 2) &&
-                                (Math.abs(sumLine[flag][number1 + 2]-sumLine[flag][number2 - 2]) <= 2) &&
-                                (Math.abs(sumLine[flag][number1 + 3]-sumLine[flag][number2 - 3]) <= 2) &&
-                                (Math.abs(sumLine[flag][number1 + 4]-sumLine[flag][number2 - 4]) <= 2) &&
-                                (Math.abs(sumLine[flag][number1 + 5]-sumLine[flag][number2 - 5]) <= 2) &&
-                                (Math.abs(sumLine[flag][number1 + 6]-sumLine[flag][number2 - 6]) <= 2) &&
-                                (sumLine[flag][number1] >= 4 && sumLine[flag][number1] <= 5)
-
-                        )*/
+                        (test2[i+6]>=16&&test2[i+6]<=21))
                 ){
             checkNumber=checkNumber+"3";
         }else if(
@@ -621,11 +611,9 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+5]>=15&&test2[i+5]<=27)&&
                         (test2[i+6]>=15&&test2[i+6]<=16)&&
                         (test2[i+7]>=15&&test2[i+7]<=27))||
-                        ((sumLine[flag][number2] >= 8 && sumLine[flag][number2] <= 9 || sumLine[flag][number2] == 0)&&
-                                (sumLine[flag][number2 - 1] >= 8 && sumLine[flag][number2 - 1] <= 9 || sumLine[flag][number2 - 1] == 0)&&
-                                (sumLine[flag][number2 - 2] >= 8 && sumLine[flag][number2 - 2] <= 9 || sumLine[flag][number2 - 2] == 0)&&
-                                (sumLine[flag][number2 - 3] >= 8 && sumLine[flag][number2 - 3] <= 9 || sumLine[flag][number2 - 3] == 0)
-                                )
+                        (
+                            sumLine[flag][number2 - 3] == 0 || sumLine[flag][number2 - 4] == 0
+                        )
                 ){
             checkNumber=checkNumber+"4";
         }else if(
@@ -658,11 +646,11 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+4]>=20&&test2[i+4]<=25)&&
                         (test2[i+5]>=21&&test2[i+5]<=25)&&
                         (test2[i+6]>=23&&test2[i+6]<=25)&&
-                        (test2[i+7]>=24&&test2[i+7]<=26))/*||
-                        (sumLine[flag][number1] == 0 &&
-                                sumLine[flag][number1 + 1] == 0
+                        (test2[i+7]>=24&&test2[i+7]<=26))||
+                        (
+                                sumLine[flag][number1] == 0 || sumLine[flag][number1 + 1] == 0
 
-                        )*/
+                        )
                 ){
             checkNumber=checkNumber+"7";
         }else if(
@@ -673,16 +661,17 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+4]>=23&&test2[i+4]<=25)&&
                         (test2[i+5]>=20&&test2[i+5]<=24)&&
                         (test2[i+6]>=15&&test2[i+6]<=24)&&
-                        (test2[i+7]>=18&&test2[i+7]<=21))/*||
-                        ((Math.abs(sumLine[flag][number1]-sumLine[flag][number2]) <= 2 )&&
+                        (test2[i+7]>=18&&test2[i+7]<=21))&&
+                        ((Math.abs(sumLine[flag][number1]-sumLine[flag][number2]) <= 2 )||
                                 (Math.abs(sumLine[flag][number1 + 1]-sumLine[flag][number2 - 1]) <= 2) &&
                                 (Math.abs(sumLine[flag][number1 + 2]-sumLine[flag][number2 - 2]) <= 2) &&
                                 (Math.abs(sumLine[flag][number1 + 3]-sumLine[flag][number2 - 3]) <= 2) &&
                                 (Math.abs(sumLine[flag][number1 + 4]-sumLine[flag][number2 - 4]) <= 2) &&
                                 (Math.abs(sumLine[flag][number1 + 5]-sumLine[flag][number2 - 5]) <= 2) &&
                                 (Math.abs(sumLine[flag][number1 + 6]-sumLine[flag][number2 - 6]) <= 2) &&
-                                (sumLine[flag][number1] >= 4 && sumLine[flag][number1] <= 5)
-                        )*/
+                                (sumLine[flag][number1] >= 4 && sumLine[flag][number1] <= 5)&&
+                                (sumLine[flag][number1 + 6] <= 5 && sumLine[flag][number1 + 7] <= 5)
+                        )
                 ){
             checkNumber=checkNumber+"8";
         }else if(
