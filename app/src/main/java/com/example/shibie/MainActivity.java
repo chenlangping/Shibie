@@ -649,7 +649,7 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+7]>=24&&test2[i+7]<=26))||
                         (
                                 sumLine[flag][number1] == 0 || sumLine[flag][number1 + 1] == 0
-
+//
                         )
                 ){
             checkNumber=checkNumber+"7";
