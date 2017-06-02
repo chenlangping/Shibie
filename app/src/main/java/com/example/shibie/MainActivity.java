@@ -287,8 +287,8 @@ public class MainActivity extends AppCompatActivity {
         int number81 = 1;
         boolean hasFourNums=false;
         int sumLine[][] = new int[5][height];
-        int subtractLine[] = new int[5];
-        int subtractColumn[] = new int[5];
+        int subtractLine[] = new int[5];    //裁剪完数字的高度差
+        int subtractColumn[] = new int[5];  //裁剪完后数字的宽度差
 
 
         /*---------------------------1-------------------------------*/
@@ -899,6 +899,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return checkNumber;
     }
+    //identify3是根据裁剪完数字的长款比来确定的，但是只能确定部分，很多重合
     private String identify3(int subtractColumn[], int subtractLine[],int i){
         String checkNumber = "";
         if(
@@ -995,6 +996,8 @@ public class MainActivity extends AppCompatActivity {
 
         return checkNumber;
     }
+    //identify4是根据数字特征来识别的，大致感觉是，如果是某个数字，那么test[m][n]一定是0/1。
+    //number10 number11 数字的上行和下行。 number40 number41 数字的左列和右列。
     private String identify4(int test[][],int i,int number10, int number11, int number40, int number41){
 
         String checkNumber = "";
@@ -1076,3 +1079,5 @@ public class MainActivity extends AppCompatActivity {
         return checkNumber;
     }
 }
+
+
