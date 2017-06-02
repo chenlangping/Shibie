@@ -287,7 +287,8 @@ public class MainActivity extends AppCompatActivity {
         int number81 = 1;
         boolean hasFourNums=false;
         int sumLine[][] = new int[5][height];
-
+        int subtractLine[] = new int[5];
+        int subtractColumn[] = new int[5];
 
 
         /*---------------------------1-------------------------------*/
@@ -313,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
             for (int j = number10; j <= number11; j++) {
                 sumLine[1][i] += test[j][i];
             }
-            Log.d("clp", "sumline[1]=" + String.valueOf(sumLine[1][i]));
+           // Log.d("clp", "sumline[1]=" + String.valueOf(sumLine[1][i]));
         }
 
         for (int j = 1; j < height; j++) {
@@ -336,6 +337,12 @@ public class MainActivity extends AppCompatActivity {
             sum = sum + String.valueOf(sumLine[1][i])+"\t";
         }
         sum += "\n";
+
+        subtractColumn[1] = number11 - number10;
+        subtractLine[1] = number51 - number50;
+
+
+
         /*---------------------------2-------------------------------*/
         for(int i=number11+1;i<width;i++){
             if(test2[i]!=29){
@@ -356,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
             for (int j = number20; j <= number21; j++) {
                 sumLine[2][i] += test[j][i];
             }
-            Log.d("clp", "sumline[2]=" + String.valueOf(sumLine[2][i]));
+            //Log.d("clp", "sumline[2]=" + String.valueOf(sumLine[2][i]));
            // sum = sum + String.valueOf(sumLine[2][i])+"\t";
 
         }
@@ -380,6 +387,10 @@ public class MainActivity extends AppCompatActivity {
             sum = sum + String.valueOf(sumLine[2][i])+"\t";
         }
         sum += "\n";
+
+        subtractColumn[2] = number21 - number20;
+        subtractLine[2] = number61 - number60;
+
         /*---------------------------3-------------------------------*/
         for(int i=number21+1;i<width;i++){
             if(test2[i]!=29){
@@ -400,7 +411,7 @@ public class MainActivity extends AppCompatActivity {
             for (int j = number30; j <= number31; j++) {
                 sumLine[3][i] += test[j][i];
             }
-            Log.d("clp", "sumline[3]=" + String.valueOf(sumLine[3][i]));
+           // Log.d("clp", "sumline[3]=" + String.valueOf(sumLine[3][i]));
             //sum = sum + String.valueOf(sumLine[3][i])+"\t";
         }
         for (int j = 1; j < height; j++) {
@@ -423,6 +434,9 @@ public class MainActivity extends AppCompatActivity {
         }
         sum += "\n";
 
+        subtractColumn[3] = number31 - number30;
+        subtractLine[3] = number71 - number70;
+
         /*---------------------------4-------------------------------*/
         for(int i=number31+1;i<width;i++){
             if(test2[i]!=29){
@@ -444,7 +458,7 @@ public class MainActivity extends AppCompatActivity {
             for (int j = number40; j <= number41; j++) {
                 sumLine[4][i] += test[j][i];
             }
-            Log.d("clp", "sumline[4]=" + String.valueOf(sumLine[4][i]));
+           // Log.d("clp", "sumline[4]=" + String.valueOf(sumLine[4][i]));
             //sum = sum + String.valueOf(sumLine[4][i])+"\t";
 
         }
@@ -469,6 +483,18 @@ public class MainActivity extends AppCompatActivity {
         }
         sum += "\n";
 
+        subtractColumn[4] = number41 - number40;
+        subtractLine[4] = number81 - number80;
+
+        Log.d("clp", "number1 " + String.valueOf(subtractColumn[1]));
+        Log.d("clp", "number1 " + String.valueOf(subtractLine[1]));
+        Log.d("clp", "number2 " + String.valueOf(subtractColumn[2]));
+        Log.d("clp", "number2 " + String.valueOf(subtractLine[2]));
+        Log.d("clp", "number3 " + String.valueOf(subtractColumn[3]));
+        Log.d("clp", "number3 " + String.valueOf(subtractLine[3]));
+        Log.d("clp", "number4 " + String.valueOf(subtractColumn[4]));
+        Log.d("clp", "number4 " + String.valueOf(subtractLine[4]));
+
         Log.d("clp","sum = "+sum);
 
 
@@ -484,10 +510,28 @@ public class MainActivity extends AppCompatActivity {
             checkNumber=checkNumber+identify(number20,test2);
             checkNumber=checkNumber+identify(number30,test2);
             checkNumber=checkNumber+identify(number40,test2);
+            checkNumber += "  ";
+
             checkNumber += identify2(1,number50,sumLine);
             checkNumber += identify2(2,number60,sumLine);
             checkNumber += identify2(3,number70,sumLine);
             checkNumber += identify2(4,number80,sumLine);
+            checkNumber += "  ";
+
+            checkNumber += identify3(subtractColumn,subtractLine,1);
+            checkNumber += " ";
+            checkNumber += identify3(subtractColumn,subtractLine,2);
+            checkNumber += " ";
+            checkNumber += identify3(subtractColumn,subtractLine,3);
+            checkNumber += " ";
+            checkNumber += identify3(subtractColumn,subtractLine,4);
+            checkNumber += "  ";
+
+            checkNumber += identify4(test,1,number10,number11,number50,number51);
+            checkNumber += identify4(test,2,number20,number21,number60,number61);
+            checkNumber += identify4(test,3,number30,number31,number70,number71);
+            checkNumber += identify4(test,4,number40,number41,number80,number81);
+
             Log.d("clp",checkNumber);
             textView.setText(checkNumber);
         }
@@ -589,6 +633,112 @@ public class MainActivity extends AppCompatActivity {
         return temp;
     }
 
+    private String identify(int i,int test2[]){
+        String checkNumber="";
+        if (
+                ((test2[i]>=26&&test2[i]<=28)&&
+                        (test2[i+1]>=26&&test2[i+1]<=27)&&
+                        (test2[i+2]>=20&&test2[i+2]<=27)&&
+                        (test2[i+3]>=15&&test2[i+3]<=26)&&
+                        (test2[i+4]>=15&&test2[i+4]<=28))
+
+                )   {
+            checkNumber=checkNumber+"1";
+        }else if(
+                ( (test2[i]>=23&&test2[i]<=28)&&
+                        (test2[i+1]==22||test2[i+1]==23)&&
+                        (test2[i+2]==20||test2[i+2]==21||test2[i+2]==23||test2[i+2]==24)&&
+                        (test2[i+3]==21||test2[i+3]==24||test2[i+3]==25)&&
+                        (test2[i+4]==21||test2[i+4]==22||test2[i+4]==24)&&
+                        (test2[i+5]==21||test2[i+5]==22||test2[i+5]==23||test2[i+5]==24)&&
+                        (test2[i+6]>=18&&test2[i+6]<=23)&&
+                        (test2[i+7]>=20&&test2[i+7]<=23) )
+
+                ){
+            checkNumber=checkNumber+"2";
+        }else if(
+                ((test2[i]>=23&&test2[i]<=26)&&
+                        (test2[i+1]>=22&&test2[i+1]<=25)&&
+                        (test2[i+2]>=21&&test2[i+2]<=25)&&
+                        (test2[i+3]>=23&&test2[i+3]<=26)&&
+                        (test2[i+4]>=23&&test2[i+4]<=26)&&
+                        (test2[i+5]>=18&&test2[i+5]<=26)&&
+                        (test2[i+6]>=16&&test2[i+6]<=21))
+                ){
+            checkNumber=checkNumber+"3";
+        }else if(
+                ((test2[i]>=26&&test2[i]<=28)&&
+                        (test2[i+1]>=24&&test2[i+1]<=26)&&
+                        (test2[i+2]>=24&&test2[i+2]<=26)&&
+                        (test2[i+3]>=23&&test2[i+3]<=27)&&
+                        (test2[i+4]>=23&&test2[i+4]<=27)&&
+                        (test2[i+5]>=15&&test2[i+5]<=27)&&
+                        (test2[i+6]>=15&&test2[i+6]<=16)&&
+                        (test2[i+7]>=15&&test2[i+7]<=27))
+                ){
+            checkNumber=checkNumber+"4";
+        }else if(
+                (test2[i]>=24&&test2[i]<=28)&&
+                        (test2[i+1]>=18&&test2[i+1]<=24)&&
+                        (test2[i+2]>=18&&test2[i+2]<=25)&&
+                        (test2[i+3]>=22&&test2[i+3]<=24)&&
+                        (test2[i+4]>=23&&test2[i+4]<=24)&&
+                        (test2[i+5]>=22&&test2[i+5]<=24)&&
+                        (test2[i+6]>=18&&test2[i+6]<=23)&&
+                        (test2[i+7]>=19&&test2[i+7]<=21)
+                ){
+            checkNumber=checkNumber+"5";
+        }else if(
+                (test2[i]>=21&&test2[i]<=27)&&
+                        (test2[i+1]>=17&&test2[i+1]<=22)&&
+                        (test2[i+2]>=15&&test2[i+2]<=25)&&
+                        (test2[i+3]>=21&&test2[i+3]<=26)&&
+                        (test2[i+4]>=23&&test2[i+4]<=27)&&
+                        (test2[i+5]>=22&&test2[i+5]<=27)&&
+                        (test2[i+6]>=17&&test2[i+6]<=26)&&
+                        (test2[i+7]>=19&&test2[i+7]<=23)
+                ){
+            checkNumber=checkNumber+"6";
+        }else if(
+                ((test2[i]>=24&&test2[i]<=28)&&
+                        (test2[i+1]>=26&&test2[i+1]<=27)&&
+                        (test2[i+2]>=21&&test2[i+2]<=25)&&
+                        (test2[i+3]>=19&&test2[i+3]<=25)&&
+                        (test2[i+4]>=20&&test2[i+4]<=25)&&
+                        (test2[i+5]>=21&&test2[i+5]<=25)&&
+                        (test2[i+6]>=23&&test2[i+6]<=25)&&
+                        (test2[i+7]>=24&&test2[i+7]<=26))
+
+                ){
+            checkNumber=checkNumber+"7";
+        }else if(
+                ((test2[i]>=21&&test2[i]<=28)&&
+                        (test2[i+1]>=17&&test2[i+1]<=21)&&
+                        (test2[i+2]>=17&&test2[i+2]<=19)&&
+                        (test2[i+3]>=19&&test2[i+3]<=23)&&
+                        (test2[i+4]>=23&&test2[i+4]<=25)&&
+                        (test2[i+5]>=20&&test2[i+5]<=24)&&
+                        (test2[i+6]>=15&&test2[i+6]<=24)&&
+                        (test2[i+7]>=18&&test2[i+7]<=21))
+
+                ){
+            checkNumber=checkNumber+"8";
+        }else if(
+                ((test2[i]>=19&&test2[i]<=27)&&
+                        (test2[i+1]>=17&&test2[i+1]<=23)&&
+                        (test2[i+2]>=19&&test2[i+2]<=27)&&
+                        (test2[i+3]>=19&&test2[i+3]<=27)&&
+                        (test2[i+4]>=25&&test2[i+4]<=27)&&
+                        (test2[i+5]>=23&&test2[i+5]<=27)&&
+                        (test2[i+6]>=17&&test2[i+6]<=27)&&
+                        (test2[i+7]>=18&&test2[i+7]<=25))
+                ){
+            checkNumber=checkNumber+"0";
+        }else{
+            checkNumber=checkNumber+"无法匹配";
+        }
+        return checkNumber;
+    }
     private  String identify2(int flag,int i,int sumLine[][]){
         String checkNumber="";
         if(
@@ -749,110 +899,180 @@ public class MainActivity extends AppCompatActivity {
         }
         return checkNumber;
     }
-    private String identify(int i,int test2[]){
-        String checkNumber="";
-        if (
-                ((test2[i]>=26&&test2[i]<=28)&&
-                        (test2[i+1]>=26&&test2[i+1]<=27)&&
-                        (test2[i+2]>=20&&test2[i+2]<=27)&&
-                        (test2[i+3]>=15&&test2[i+3]<=26)&&
-                        (test2[i+4]>=15&&test2[i+4]<=28))
-
-                )   {
-            checkNumber=checkNumber+"1";
-        }else if(
-                ( (test2[i]>=23&&test2[i]<=28)&&
-                        (test2[i+1]==22||test2[i+1]==23)&&
-                        (test2[i+2]==20||test2[i+2]==21||test2[i+2]==23||test2[i+2]==24)&&
-                        (test2[i+3]==21||test2[i+3]==24||test2[i+3]==25)&&
-                        (test2[i+4]==21||test2[i+4]==22||test2[i+4]==24)&&
-                        (test2[i+5]==21||test2[i+5]==22||test2[i+5]==23||test2[i+5]==24)&&
-                        (test2[i+6]>=18&&test2[i+6]<=23)&&
-                        (test2[i+7]>=20&&test2[i+7]<=23) )
-
-                ){
-            checkNumber=checkNumber+"2";
-        }else if(
-                ((test2[i]>=23&&test2[i]<=26)&&
-                        (test2[i+1]>=22&&test2[i+1]<=25)&&
-                        (test2[i+2]>=21&&test2[i+2]<=25)&&
-                        (test2[i+3]>=23&&test2[i+3]<=26)&&
-                        (test2[i+4]>=23&&test2[i+4]<=26)&&
-                        (test2[i+5]>=18&&test2[i+5]<=26)&&
-                        (test2[i+6]>=16&&test2[i+6]<=21))
-                ){
-            checkNumber=checkNumber+"3";
-        }else if(
-                ((test2[i]>=26&&test2[i]<=28)&&
-                        (test2[i+1]>=24&&test2[i+1]<=26)&&
-                        (test2[i+2]>=24&&test2[i+2]<=26)&&
-                        (test2[i+3]>=23&&test2[i+3]<=27)&&
-                        (test2[i+4]>=23&&test2[i+4]<=27)&&
-                        (test2[i+5]>=15&&test2[i+5]<=27)&&
-                        (test2[i+6]>=15&&test2[i+6]<=16)&&
-                        (test2[i+7]>=15&&test2[i+7]<=27))
-                ){
-            checkNumber=checkNumber+"4";
-        }else if(
-                (test2[i]>=24&&test2[i]<=28)&&
-                        (test2[i+1]>=18&&test2[i+1]<=24)&&
-                        (test2[i+2]>=18&&test2[i+2]<=25)&&
-                        (test2[i+3]>=22&&test2[i+3]<=24)&&
-                        (test2[i+4]>=23&&test2[i+4]<=24)&&
-                        (test2[i+5]>=22&&test2[i+5]<=24)&&
-                        (test2[i+6]>=18&&test2[i+6]<=23)&&
-                        (test2[i+7]>=19&&test2[i+7]<=21)
-                ){
-            checkNumber=checkNumber+"5";
-        }else if(
-                (test2[i]>=21&&test2[i]<=27)&&
-                        (test2[i+1]>=17&&test2[i+1]<=22)&&
-                        (test2[i+2]>=15&&test2[i+2]<=25)&&
-                        (test2[i+3]>=21&&test2[i+3]<=26)&&
-                        (test2[i+4]>=23&&test2[i+4]<=27)&&
-                        (test2[i+5]>=22&&test2[i+5]<=27)&&
-                        (test2[i+6]>=17&&test2[i+6]<=26)&&
-                        (test2[i+7]>=19&&test2[i+7]<=23)
-                ){
-            checkNumber=checkNumber+"6";
-        }else if(
-                ((test2[i]>=24&&test2[i]<=28)&&
-                        (test2[i+1]>=26&&test2[i+1]<=27)&&
-                        (test2[i+2]>=21&&test2[i+2]<=25)&&
-                        (test2[i+3]>=19&&test2[i+3]<=25)&&
-                        (test2[i+4]>=20&&test2[i+4]<=25)&&
-                        (test2[i+5]>=21&&test2[i+5]<=25)&&
-                        (test2[i+6]>=23&&test2[i+6]<=25)&&
-                        (test2[i+7]>=24&&test2[i+7]<=26))
-
-                ){
-            checkNumber=checkNumber+"7";
-        }else if(
-                ((test2[i]>=21&&test2[i]<=28)&&
-                        (test2[i+1]>=17&&test2[i+1]<=21)&&
-                        (test2[i+2]>=17&&test2[i+2]<=19)&&
-                        (test2[i+3]>=19&&test2[i+3]<=23)&&
-                        (test2[i+4]>=23&&test2[i+4]<=25)&&
-                        (test2[i+5]>=20&&test2[i+5]<=24)&&
-                        (test2[i+6]>=15&&test2[i+6]<=24)&&
-                        (test2[i+7]>=18&&test2[i+7]<=21))
-
-                ){
-            checkNumber=checkNumber+"8";
-        }else if(
-                ((test2[i]>=19&&test2[i]<=27)&&
-                        (test2[i+1]>=17&&test2[i+1]<=23)&&
-                        (test2[i+2]>=19&&test2[i+2]<=27)&&
-                        (test2[i+3]>=19&&test2[i+3]<=27)&&
-                        (test2[i+4]>=25&&test2[i+4]<=27)&&
-                        (test2[i+5]>=23&&test2[i+5]<=27)&&
-                        (test2[i+6]>=17&&test2[i+6]<=27)&&
-                        (test2[i+7]>=18&&test2[i+7]<=25))
-                ){
-            checkNumber=checkNumber+"0";
-        }else{
-            checkNumber=checkNumber+"无法匹配";
+    private String identify3(int subtractColumn[], int subtractLine[],int i){
+        String checkNumber = "";
+        if(
+                (subtractColumn[i] == 6 && subtractLine[i] == 9)||
+                        (subtractColumn[i] == 7 && subtractLine[i] == 9)
+                ) {
+            checkNumber += "1";
         }
+        else if(
+                //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                        (subtractColumn[i] == 9 && subtractLine[i] == 9)
+                ) {
+            checkNumber += "2";
+        }
+        else if(
+                (subtractColumn[i] == 7 && subtractLine[i] == 12)||
+                        (subtractColumn[i] == 7 && subtractLine[i] == 13)
+                        //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                        //(subtractColumn[i] == 9 && subtractLine[i] == 12)
+
+                ){
+            checkNumber += "3";
+        }
+        /*else if(
+                //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                        //(subtractColumn[i] == 9 && subtractLine[i] == 13)||
+                        //(subtractColumn[i] == 10 && subtractLine[i] == 12)
+                ){
+            checkNumber += "4";
+        }*/
+        else if (
+                (subtractColumn[i] == 8 && subtractLine[i] == 12)
+                        //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                       // (subtractColumn[i] == 9 && subtractLine[i] == 12)
+                ){
+            checkNumber += "5";
+
+        }
+        /*else if(
+               // (subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                       // (subtractColumn[i] == 9 && subtractLine[i] == 12)||
+                        //(subtractColumn[i] == 10 && subtractLine[i] == 12)
+                ){
+            checkNumber += "6";
+        }*/
+        /*else if(
+                //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                       // (subtractColumn[i] == 9 && subtractLine[i] == 12)||
+                       // (subtractColumn[i] == 9 && subtractLine[i] == 13)
+                ){
+            checkNumber += "7";
+        }*/
+       /* else if(
+                //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                        //(subtractColumn[i] == 10 && subtractLine[i] == 12)
+                ){
+            checkNumber += "8";
+        }*/
+        else if(
+                (subtractColumn[i] == 10 && subtractLine[i] == 9)||
+                        (subtractColumn[i] == 7 && subtractLine[i] == 13)
+                ){
+            checkNumber += "0";
+        }
+        //2,3,4,5,6,7,8 (8,13)
+        else if (
+                subtractColumn[i] == 8 && subtractLine[i] == 13
+                ){
+            checkNumber += "2/3/4/5/6/7/8";
+        }
+        //3,5,6,7 (9,12)
+        else if (
+                subtractColumn[i] == 9 && subtractLine[i] == 12
+                ){
+            checkNumber += "3/5/6/7";
+        }
+        //4,7 (9,13)
+        else if (
+                subtractColumn[i] == 9 && subtractLine[i] == 13
+                ){
+            checkNumber += "4/7";
+        }
+        //4,6,8 (10,12)
+        else if (
+                subtractColumn[i] == 10 && subtractLine[i] == 12
+                ){
+            checkNumber += "4/6/8";
+        }
+        //4,6,7,8无法识别
+        else {
+            checkNumber = checkNumber + "无法匹配";
+        }
+
+
+        return checkNumber;
+    }
+    private String identify4(int test[][],int i,int number10, int number11, int number40, int number41){
+
+        String checkNumber = "";
+
+        if(
+                (test[number11-3][number40] == 0 && test[number11-3][number40+1] == 0)&&
+                        (test[number11-3][number40+2] == 0 && test[number11-3][number40+3] == 0)&&
+                        (test[number11-3][number40+4] == 0 && test[number11-3][number40+5] == 0)&&
+                        (test[number11-3][number40+6] == 0 && test[number11-3][number40+7] == 0)&&
+                        (test[number11-3][number40+8] == 0 && test[number11-3][number40+9] == 0)
+                ) {
+            checkNumber += "1";
+        }
+        /*else if(
+                ()
+                )
+        {
+            checkNumber += "2";
+        }
+        else if(
+                ()
+                )
+        {
+            checkNumber += "3";
+        }
+        else if(
+                ()
+                )
+        {
+            checkNumber += "4";
+        }*/
+        else if(
+                (test[number10+(number11 - number10)/2][number40] == 0 &&
+                        test[number10+(number11 - number10)/2][number40+1] == 0)&&
+                        (test[number10][number41] == 0 || test[number10][number41-1] == 0 ||
+                                test[number10][number41-2] == 0)&&
+                        (test[number11][number40+4] == 1 && test[number11][number40+5] == 1)&&
+                        (test[number11-1][number40+4] == 1 && test[number11-1][number40+5] == 1)
+                )
+        {
+            checkNumber += "5";
+        }
+        /*else if(
+                ()
+                )
+        {
+            checkNumber += "6";
+        }*/
+        else if(
+                (test[number10+(number11 - number10)/2][number40] == 0 &&
+                        test[number10+(number11 - number10)/2][number40+1] == 0)&&
+                        (test[number10][number40] == 0 || test[number10][number40+1] == 0)&&
+                        (test[number11][number40+(number41 - number40)/2] == 1)
+                )
+        {
+            checkNumber += "7";
+        }
+
+        /*else if(
+                ()
+                )
+        {
+            checkNumber += "8";
+        }*/
+        else if(
+                (test[number10+(number11 - number10)/2][number40] == 0 &&
+                        test[number10+(number11 - number10)/2][number41] == 0)&&
+                        (test[number10][number40+(number41 - number40)/2] == 0 ||
+                                test[number11][number40+(number41 - number40)/2] == 0)&&
+                        (test[number10+(number11-number10)/2][number40+(number41-number40)/2] == 1)
+                )
+        {
+            checkNumber += "0";
+        }
+        else{
+            checkNumber += "无法识别";
+        }
+
         return checkNumber;
     }
 }
