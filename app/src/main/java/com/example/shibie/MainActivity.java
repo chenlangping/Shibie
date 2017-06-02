@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView=null;
     private Button button=null;
     private Button button2=null;
+
+    private static int MAXARRAY=100;
+    //这个MAXARRAY是最大的数组，建议填写为 识别的方法数*4
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -506,34 +509,37 @@ public class MainActivity extends AppCompatActivity {
         if(hasFourNums){
             //确保一定是四个数字
             String checkNumber="识别的数字=";
-            checkNumber=checkNumber+identify(number10,test2);
-            checkNumber=checkNumber+identify(number20,test2);
-            checkNumber=checkNumber+identify(number30,test2);
-            checkNumber=checkNumber+identify(number40,test2);
-            checkNumber += "  ";
 
-            checkNumber += identify2(1,number50,sumLine);
-            checkNumber += identify2(2,number60,sumLine);
-            checkNumber += identify2(3,number70,sumLine);
-            checkNumber += identify2(4,number80,sumLine);
-            checkNumber += "  ";
+            int result[][]=new int[MAXARRAY][10];
 
-            checkNumber += identify3(subtractColumn,subtractLine,1);
-            checkNumber += " ";
-            checkNumber += identify3(subtractColumn,subtractLine,2);
-            checkNumber += " ";
-            checkNumber += identify3(subtractColumn,subtractLine,3);
-            checkNumber += " ";
-            checkNumber += identify3(subtractColumn,subtractLine,4);
-            checkNumber += "  ";
+            result[0]=identify(number10,test2);
+            result[1]=identify(number20,test2);
+            result[2]=identify(number30,test2);
+            result[3]=identify(number40,test2);
 
-            checkNumber += identify4(test,1,number10,number11,number50,number51);
-            checkNumber += identify4(test,2,number20,number21,number60,number61);
-            checkNumber += identify4(test,3,number30,number31,number70,number71);
-            checkNumber += identify4(test,4,number40,number41,number80,number81);
 
-            Log.d("clp",checkNumber);
-            textView.setText(checkNumber);
+            result[4]= identify2(1,number50,sumLine);
+            result[5]= identify2(2,number60,sumLine);
+            result[6]= identify2(3,number70,sumLine);
+            result[7]= identify2(4,number80,sumLine);
+
+
+            result[8]= identify3(subtractColumn,subtractLine,1);
+            result[9]= identify3(subtractColumn,subtractLine,2);
+            result[10]= identify3(subtractColumn,subtractLine,3);
+            result[11]= identify3(subtractColumn,subtractLine,4);
+
+            //result[12]= identify4(test,1,number10,number11,number50,number51);
+            //result[13]= identify4(test,2,number20,number21,number60,number61);
+            //result[14]= identify4(test,3,number30,number31,number70,number71);
+            //result[15]= identify4(test,4,number40,number41,number80,number81);
+
+            textView.setText(finalResult(result));
+
+            showRusult(result);
+
+            Log.d("clp",finalResult(result));
+
         }
 
     }
@@ -633,8 +639,9 @@ public class MainActivity extends AppCompatActivity {
         return temp;
     }
 
-    private String identify(int i,int test2[]){
+    private int[] identify(int i,int test2[]){
         String checkNumber="";
+        int result[]=new int[10];
         if (
                 ((test2[i]>=26&&test2[i]<=28)&&
                         (test2[i+1]>=26&&test2[i+1]<=27)&&
@@ -644,7 +651,8 @@ public class MainActivity extends AppCompatActivity {
 
                 )   {
             checkNumber=checkNumber+"1";
-        }else if(
+            result[1]=1;
+        }if(
                 ( (test2[i]>=23&&test2[i]<=28)&&
                         (test2[i+1]==22||test2[i+1]==23)&&
                         (test2[i+2]==20||test2[i+2]==21||test2[i+2]==23||test2[i+2]==24)&&
@@ -655,8 +663,8 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+7]>=20&&test2[i+7]<=23) )
 
                 ){
-            checkNumber=checkNumber+"2";
-        }else if(
+            result[2]=1;
+        }if(
                 ((test2[i]>=23&&test2[i]<=26)&&
                         (test2[i+1]>=22&&test2[i+1]<=25)&&
                         (test2[i+2]>=21&&test2[i+2]<=25)&&
@@ -665,8 +673,8 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+5]>=18&&test2[i+5]<=26)&&
                         (test2[i+6]>=16&&test2[i+6]<=21))
                 ){
-            checkNumber=checkNumber+"3";
-        }else if(
+            result[3]=1;
+        }if(
                 ((test2[i]>=26&&test2[i]<=28)&&
                         (test2[i+1]>=24&&test2[i+1]<=26)&&
                         (test2[i+2]>=24&&test2[i+2]<=26)&&
@@ -676,8 +684,8 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+6]>=15&&test2[i+6]<=16)&&
                         (test2[i+7]>=15&&test2[i+7]<=27))
                 ){
-            checkNumber=checkNumber+"4";
-        }else if(
+            result[4]=1;
+        }if(
                 (test2[i]>=24&&test2[i]<=28)&&
                         (test2[i+1]>=18&&test2[i+1]<=24)&&
                         (test2[i+2]>=18&&test2[i+2]<=25)&&
@@ -687,8 +695,8 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+6]>=18&&test2[i+6]<=23)&&
                         (test2[i+7]>=19&&test2[i+7]<=21)
                 ){
-            checkNumber=checkNumber+"5";
-        }else if(
+            result[5]=1;
+        }if(
                 (test2[i]>=21&&test2[i]<=27)&&
                         (test2[i+1]>=17&&test2[i+1]<=22)&&
                         (test2[i+2]>=15&&test2[i+2]<=25)&&
@@ -698,8 +706,8 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+6]>=17&&test2[i+6]<=26)&&
                         (test2[i+7]>=19&&test2[i+7]<=23)
                 ){
-            checkNumber=checkNumber+"6";
-        }else if(
+            result[6]=1;
+        }if(
                 ((test2[i]>=24&&test2[i]<=28)&&
                         (test2[i+1]>=26&&test2[i+1]<=27)&&
                         (test2[i+2]>=21&&test2[i+2]<=25)&&
@@ -710,8 +718,8 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+7]>=24&&test2[i+7]<=26))
 
                 ){
-            checkNumber=checkNumber+"7";
-        }else if(
+            result[7]=1;
+        }if(
                 ((test2[i]>=21&&test2[i]<=28)&&
                         (test2[i+1]>=17&&test2[i+1]<=21)&&
                         (test2[i+2]>=17&&test2[i+2]<=19)&&
@@ -722,8 +730,8 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+7]>=18&&test2[i+7]<=21))
 
                 ){
-            checkNumber=checkNumber+"8";
-        }else if(
+            result[8]=1;
+        }if(
                 ((test2[i]>=19&&test2[i]<=27)&&
                         (test2[i+1]>=17&&test2[i+1]<=23)&&
                         (test2[i+2]>=19&&test2[i+2]<=27)&&
@@ -733,14 +741,15 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+6]>=17&&test2[i+6]<=27)&&
                         (test2[i+7]>=18&&test2[i+7]<=25))
                 ){
-            checkNumber=checkNumber+"0";
-        }else{
-            checkNumber=checkNumber+"无法匹配";
+            result[0]=1;
         }
-        return checkNumber;
+
+        return result;
     }
-    private  String identify2(int flag,int i,int sumLine[][]){
+
+    private int[] identify2(int flag,int i,int sumLine[][]){
         String checkNumber="";
+        int result[]=new int[10];
         if(
                 (sumLine[flag][i] >= 3 && sumLine[flag][i] <= 6)&&
                         (sumLine[flag][i+1] >= 2 && sumLine[flag][i+1] <= 6)&&
@@ -753,9 +762,9 @@ public class MainActivity extends AppCompatActivity {
                         (sumLine[flag][i+8] >= 3 && sumLine[flag][i+8] <= 5)&&
                         (sumLine[flag][i+9] >= 0 && sumLine[flag][i+9] <= 5)
                 ){
-            checkNumber=checkNumber+"1";
+            result[1]=1;
         }
-        else if(
+        if(
                 (sumLine[flag][i] >= 4 && sumLine[flag][i] <= 5)&&
                         (sumLine[flag][i+1] >= 0 && sumLine[flag][i+1] <= 5)&&
                         (sumLine[flag][i+2] >= 2 && sumLine[flag][i+2] <= 5)&&
@@ -766,9 +775,10 @@ public class MainActivity extends AppCompatActivity {
                         (sumLine[flag][i+7] >= 0 && sumLine[flag][i+7] <= 6)&&
                         (sumLine[flag][i+8] >= 0 && sumLine[flag][i+8] <= 7)
                 ){
-            checkNumber=checkNumber+"2";
+            //checkNumber=checkNumber+"2";
+            result[2]=1;
         }
-        else if(
+        if(
                 (sumLine[flag][i] >= 4 && sumLine[flag][i] <= 6)&&
                         (sumLine[flag][i+1] >= 2 && sumLine[flag][i+1] <= 6)&&
                         (sumLine[flag][i+2] >= 2 && sumLine[flag][i+2] <= 5)&&
@@ -783,10 +793,11 @@ public class MainActivity extends AppCompatActivity {
                         (sumLine[flag][i+11] >= 2 && sumLine[flag][i+11] <= 6)&&
                         (sumLine[flag][i+12] >= 2 && sumLine[flag][i+12] <= 5)
                 ){
-            checkNumber=checkNumber+"3";
+            //checkNumber=checkNumber+"3";
+            result[3]=1;
 
         }
-        else if(
+        if(
                 (sumLine[flag][i] >= 7 && sumLine[flag][i] <= 10)&&
                         (sumLine[flag][i+1] >= 6 && sumLine[flag][i+1] <= 8)&&
                         (sumLine[flag][i+2] >= 5 && sumLine[flag][i+2] <= 7)&&
@@ -802,10 +813,11 @@ public class MainActivity extends AppCompatActivity {
                         (sumLine[flag][i+12] >= 7 && sumLine[flag][i+12] <= 10)
 
                 ){
-            checkNumber=checkNumber+"4";
+            //checkNumber=checkNumber+"4";
+            result[4]=1;
 
         }
-        else if(
+        if(
                 (sumLine[flag][i] >= 1 && sumLine[flag][i] <= 3)&&
                         (sumLine[flag][i+1] >= 1 && sumLine[flag][i+1] <= 3)&&
                         (sumLine[flag][i+2] >= 1 && sumLine[flag][i+2] <= 7)&&
@@ -821,10 +833,11 @@ public class MainActivity extends AppCompatActivity {
                         (sumLine[flag][i+12] >= 2 && sumLine[flag][i+12] <= 5)
 
                 ){
-            checkNumber=checkNumber+"5";
+            //checkNumber=checkNumber+"5";
+            result[5]=1;
 
         }
-        else if(
+        if(
                 (sumLine[flag][i] >= 3 && sumLine[flag][i] <= 8)&&
                         (sumLine[flag][i+1] >= 1 && sumLine[flag][i+1] <= 8)&&
                         (sumLine[flag][i+2] >= 4 && sumLine[flag][i+2] <= 9)&&
@@ -840,10 +853,11 @@ public class MainActivity extends AppCompatActivity {
                         (sumLine[flag][i+12] >= 1 && sumLine[flag][i+12] <= 6)
 
                 ){
-            checkNumber=checkNumber+"6";
+            //checkNumber=checkNumber+"6";
+            result[6]=1;
 
         }
-        else if(
+        if(
                 (sumLine[flag][i] >= 0 && sumLine[flag][i] <= 1)&&
                         (sumLine[flag][i+1] >= 0 && sumLine[flag][i+1] <= 1)&&
                         (sumLine[flag][i+2] >= 0 && sumLine[flag][i+2] <= 7)&&
@@ -859,10 +873,11 @@ public class MainActivity extends AppCompatActivity {
                         (sumLine[flag][i+12] >= 6 && sumLine[flag][i+12] <= 9)
 
                 ){
-            checkNumber=checkNumber+"7";
+            //checkNumber=checkNumber+"7";
+            result[7]=1;
 
         }
-        else if(
+        if(
                 (sumLine[flag][i] >= 3 && sumLine[flag][i] <= 6)&&
                         (sumLine[flag][i+1] >= 1 && sumLine[flag][i+1] <= 7)&&
                         (sumLine[flag][i+2] >= 2 && sumLine[flag][i+2] <= 6)&&
@@ -878,10 +893,10 @@ public class MainActivity extends AppCompatActivity {
                         (sumLine[flag][i+12] >= 0 && sumLine[flag][i+12] <= 6)
 
                 ){
-            checkNumber=checkNumber+"8";
+            result[8]=1;
 
         }
-        else if(
+        if(
                 (sumLine[flag][i] >= 4 && sumLine[flag][i] <= 6)&&
                         (sumLine[flag][i+1] >= 2 && sumLine[flag][i+1] <= 6)&&
                         (sumLine[flag][i+2] >= 2 && sumLine[flag][i+2] <= 5)&&
@@ -893,26 +908,29 @@ public class MainActivity extends AppCompatActivity {
                         (sumLine[flag][i+8] >= 4 && sumLine[flag][i+8] <= 6)&&
                         (sumLine[flag][i+9] >= 3 && sumLine[flag][i+9] <= 6)
                 ){
-            checkNumber=checkNumber+"0";
-        }else{
-            checkNumber=checkNumber+"无法匹配";
+            result[0]=1;
         }
-        return checkNumber;
+        return result;
     }
+
     //identify3是根据裁剪完数字的长款比来确定的，但是只能确定部分，很多重合
-    private String identify3(int subtractColumn[], int subtractLine[],int i){
+    private int[] identify3(int subtractColumn[], int subtractLine[],int i){
         String checkNumber = "";
+        int result[]=new int[10];
+
         if(
                 (subtractColumn[i] == 6 && subtractLine[i] == 9)||
                         (subtractColumn[i] == 7 && subtractLine[i] == 9)
                 ) {
-            checkNumber += "1";
+            //checkNumber += "1";
+            result[1]=1;
         }
         else if(
                 //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
                         (subtractColumn[i] == 9 && subtractLine[i] == 9)
                 ) {
-            checkNumber += "2";
+            result[2]=1;
+            //checkNumber += "2";
         }
         else if(
                 (subtractColumn[i] == 7 && subtractLine[i] == 12)||
@@ -921,7 +939,8 @@ public class MainActivity extends AppCompatActivity {
                         //(subtractColumn[i] == 9 && subtractLine[i] == 12)
 
                 ){
-            checkNumber += "3";
+            //checkNumber += "3";
+            result[3]=1;
         }
         /*else if(
                 //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
@@ -935,7 +954,8 @@ public class MainActivity extends AppCompatActivity {
                         //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
                        // (subtractColumn[i] == 9 && subtractLine[i] == 12)
                 ){
-            checkNumber += "5";
+            //checkNumber += "5";
+            result[5]=1;
 
         }
         /*else if(
@@ -962,45 +982,65 @@ public class MainActivity extends AppCompatActivity {
                 (subtractColumn[i] == 10 && subtractLine[i] == 9)||
                         (subtractColumn[i] == 7 && subtractLine[i] == 13)
                 ){
-            checkNumber += "0";
+            result[0]=1;
+            //checkNumber += "0";
         }
         //2,3,4,5,6,7,8 (8,13)
         else if (
                 subtractColumn[i] == 8 && subtractLine[i] == 13
                 ){
-            checkNumber += "2/3/4/5/6/7/8";
+            //checkNumber += "2/3/4/5/6/7/8";
+            result[2]=1;
+            result[3]=1;
+            result[4]=1;
+            result[5]=1;
+            result[6]=1;
+            result[7]=1;
+            result[8]=1;
         }
         //3,5,6,7 (9,12)
         else if (
                 subtractColumn[i] == 9 && subtractLine[i] == 12
                 ){
-            checkNumber += "3/5/6/7";
+            //checkNumber += "3/5/6/7";
+            result[3]=1;
+            result[5]=1;
+            result[6]=1;
+            result[7]=1;
         }
         //4,7 (9,13)
         else if (
                 subtractColumn[i] == 9 && subtractLine[i] == 13
                 ){
-            checkNumber += "4/7";
+            //checkNumber += "4/7";
+            result[4]=1;
+            result[7]=1;
         }
         //4,6,8 (10,12)
         else if (
                 subtractColumn[i] == 10 && subtractLine[i] == 12
                 ){
-            checkNumber += "4/6/8";
+            //checkNumber += "4/6/8";
+            result[4]=1;
+            result[6]=1;
+            result[8]=1;
         }
         //4,6,7,8无法识别
         else {
-            checkNumber = checkNumber + "无法匹配";
+            //checkNumber = checkNumber + "无法匹配";
         }
 
 
-        return checkNumber;
+        return result;
     }
+
     //identify4是根据数字特征来识别的，大致感觉是，如果是某个数字，那么test[m][n]一定是0/1。
     //number10 number11 数字的上行和下行。 number40 number41 数字的左列和右列。
-    private String identify4(int test[][],int i,int number10, int number11, int number40, int number41){
+    private int[] identify4(int test[][],int i,int number10, int number11, int number40, int number41){
 
         String checkNumber = "";
+
+        int result[]=new int[10];
 
         if(
                 (test[number11-3][number40] == 0 && test[number11-3][number40+1] == 0)&&
@@ -1009,7 +1049,8 @@ public class MainActivity extends AppCompatActivity {
                         (test[number11-3][number40+6] == 0 && test[number11-3][number40+7] == 0)&&
                         (test[number11-3][number40+8] == 0 && test[number11-3][number40+9] == 0)
                 ) {
-            checkNumber += "1";
+            //checkNumber += "1";
+            result[1]=1;
         }
         /*else if(
                 ()
@@ -1038,7 +1079,8 @@ public class MainActivity extends AppCompatActivity {
                         (test[number11-1][number40+4] == 1 && test[number11-1][number40+5] == 1)
                 )
         {
-            checkNumber += "5";
+            //checkNumber += "5";
+            result[5]=1;
         }
         /*else if(
                 ()
@@ -1053,7 +1095,8 @@ public class MainActivity extends AppCompatActivity {
                         (test[number11][number40+(number41 - number40)/2] == 1)
                 )
         {
-            checkNumber += "7";
+            //checkNumber += "7";
+            result[7]=1;
         }
 
         /*else if(
@@ -1070,13 +1113,94 @@ public class MainActivity extends AppCompatActivity {
                         (test[number10+(number11-number10)/2][number40+(number41-number40)/2] == 1)
                 )
         {
-            checkNumber += "0";
+            //checkNumber += "0";
+            result[0]=1;
         }
         else{
-            checkNumber += "无法识别";
+            //checkNumber += "无法识别";
         }
 
-        return checkNumber;
+        return result;
+    }
+
+    private void showRusult(int result[][]){
+        String a="";
+        for(int i=0;i<MAXARRAY;i++){
+            for(int j=0;j<10;j++){
+                a=a+String.valueOf(result[i][j]);
+            }
+            Log.d("clp",a);
+            a="";
+        }
+    }
+
+    private String finalResult(int result[][]){
+        String finalResult="";
+        int array1[]=new int[10];
+        int array2[]=new int[10];
+        int array3[]=new int[10];
+        int array4[]=new int[10];
+
+        for(int i=0;i<MAXARRAY;i=i+4){
+            for(int j=0;j<10;j++){
+                array1[j]+=result[i][j];
+            }
+        }
+
+        for(int i=1;i<MAXARRAY;i=i+4){
+            for(int j=0;j<10;j++){
+                array2[j]+=result[i][j];
+            }
+        }
+
+        for(int i=2;i<MAXARRAY;i=i+4){
+            for(int j=0;j<10;j++){
+                array3[j]+=result[i][j];
+            }
+        }
+
+        for(int i=3;i<MAXARRAY;i=i+4){
+            for(int j=0;j<10;j++){
+                array4[j]+=result[i][j];
+            }
+        }
+
+        finalResult+=String.valueOf(maxArrayIndex(array1));
+        finalResult+=String.valueOf(maxArrayIndex(array2));
+        finalResult+=String.valueOf(maxArrayIndex(array3));
+        finalResult+=String.valueOf(maxArrayIndex(array4));
+
+        for(int i=0;i<10;i++){
+            Log.d("clp",String.valueOf(i)+" "+String.valueOf(array1[i]));
+        }
+
+        for(int i=0;i<10;i++){
+            Log.d("clp",String.valueOf(i)+" "+String.valueOf(array2[i]));
+        }
+
+        for(int i=0;i<10;i++){
+            Log.d("clp",String.valueOf(i)+" "+String.valueOf(array3[i]));
+        }
+
+        for(int i=0;i<10;i++){
+            Log.d("clp",String.valueOf(i)+" "+String.valueOf(array4[i]));
+        }
+
+        return finalResult;
+    }
+
+    private int maxArrayIndex(int array[]){
+        //该函数返回数组最大值的下标
+        //同时也获取到最大值,用maxNumber记录
+        int maxIndex = 0;
+        int maxNumber = array[0];
+        for(int i=0; i<array.length; i++){
+            if(array[i] > maxNumber){
+                maxNumber = array[i];
+                maxIndex = i;
+            }
+        }
+        return maxIndex;
     }
 }
 
