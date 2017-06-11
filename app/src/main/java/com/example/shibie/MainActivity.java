@@ -691,8 +691,8 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+2]>=18&&test2[i+2]<=25)&&
                         (test2[i+3]>=22&&test2[i+3]<=24)&&
                         (test2[i+4]>=23&&test2[i+4]<=24)&&
-                        (test2[i+5]>=22&&test2[i+5]<=24)&&
-                        (test2[i+6]>=18&&test2[i+6]<=23)&&
+                        (test2[i+5]>=19&&test2[i+5]<=24)&&
+                        (test2[i+6]>=16&&test2[i+6]<=23)&&
                         (test2[i+7]>=19&&test2[i+7]<=21)
                 ){
             result[5]=1;
@@ -720,14 +720,14 @@ public class MainActivity extends AppCompatActivity {
                 ){
             result[7]=1;
         }if(
-                ((test2[i]>=21&&test2[i]<=28)&&
-                        (test2[i+1]>=17&&test2[i+1]<=21)&&
-                        (test2[i+2]>=17&&test2[i+2]<=23)&&
+                ((test2[i]>=20&&test2[i]<=28)&&
+                        (test2[i+1]>=17&&test2[i+1]<=22)&&
+                        (test2[i+2]>=16&&test2[i+2]<=24)&&
                         (test2[i+3]>=19&&test2[i+3]<=23)&&
-                        (test2[i+4]>=23&&test2[i+4]<=25)&&
-                        (test2[i+5]>=20&&test2[i+5]<=24)&&
+                        (test2[i+4]>=21&&test2[i+4]<=25)&&
+                        (test2[i+5]>=19&&test2[i+5]<=24)&&
                         (test2[i+6]>=15&&test2[i+6]<=24)&&
-                        (test2[i+7]>=18&&test2[i+7]<=21))
+                        (test2[i+7]>=16&&test2[i+7]<=23))
 
                 ){
             result[8]=1;
@@ -801,7 +801,7 @@ public class MainActivity extends AppCompatActivity {
                 (sumLine[flag][i] >= 7 && sumLine[flag][i] <= 10)&&
                         (sumLine[flag][i+1] >= 6 && sumLine[flag][i+1] <= 8)&&
                         (sumLine[flag][i+2] >= 5 && sumLine[flag][i+2] <= 7)&&
-                        (sumLine[flag][i+3] >= 4 && sumLine[flag][i+3] <= 8)&&
+                        (sumLine[flag][i+3] >= 4 && sumLine[flag][i+3] <= 9)&&
                         (sumLine[flag][i+4] >= 4 && sumLine[flag][i+4] <= 10)&&
                         (sumLine[flag][i+5] >= 4 && sumLine[flag][i+5] <= 8)&&
                         (sumLine[flag][i+6] >= 4 && sumLine[flag][i+6] <= 8)&&
@@ -883,12 +883,12 @@ public class MainActivity extends AppCompatActivity {
                         (sumLine[flag][i+2] >= 2 && sumLine[flag][i+2] <= 6)&&
                         (sumLine[flag][i+3] >= 3 && sumLine[flag][i+3] <= 6)&&
                         (sumLine[flag][i+4] >= 3 && sumLine[flag][i+4] <= 6)&&
-                        (sumLine[flag][i+5] >= 2 && sumLine[flag][i+5] <= 5)&&
-                        (sumLine[flag][i+6] >= 2 && sumLine[flag][i+6] <= 5)&&
-                        (sumLine[flag][i+7] >= 2 && sumLine[flag][i+7] <= 5)&&
+                        (sumLine[flag][i+5] >= 2 && sumLine[flag][i+5] <= 7)&&
+                        (sumLine[flag][i+6] >= 2 && sumLine[flag][i+6] <= 6)&&
+                        (sumLine[flag][i+7] >= 1 && sumLine[flag][i+7] <= 5)&&
                         (sumLine[flag][i+8] >= 2 && sumLine[flag][i+8] <= 6)&&
                         (sumLine[flag][i+9] >= 3 && sumLine[flag][i+9] <= 6)&&
-                        (sumLine[flag][i+10] >= 3 && sumLine[flag][i+10] <= 6)&&
+                        (sumLine[flag][i+10] >= 3 && sumLine[flag][i+10] <= 7)&&
                         (sumLine[flag][i+11] >= 2 && sumLine[flag][i+11] <= 8)&&
                         (sumLine[flag][i+12] >= 0 && sumLine[flag][i+12] <= 6)
 
@@ -905,7 +905,7 @@ public class MainActivity extends AppCompatActivity {
                         (sumLine[flag][i+5] >= 3 && sumLine[flag][i+5] <= 5)&&
                         (sumLine[flag][i+6] >= 3 && sumLine[flag][i+6] <= 6)&&
                         (sumLine[flag][i+7] >= 3 && sumLine[flag][i+7] <= 5)&&
-                        (sumLine[flag][i+8] >= 4 && sumLine[flag][i+8] <= 6)&&
+                        (sumLine[flag][i+8] >= 3 && sumLine[flag][i+8] <= 6)&&
                         (sumLine[flag][i+9] >= 3 && sumLine[flag][i+9] <= 6)
                 ){
             result[0]=1;
@@ -927,7 +927,7 @@ public class MainActivity extends AppCompatActivity {
             result[1]=1;
         }
         if(
-                //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                (subtractColumn[i] == 8 && subtractLine[i] == 13)||
                         (subtractColumn[i] == 9 && subtractLine[i] == 9)
                 ) {
             result[2]=1;
@@ -957,7 +957,8 @@ public class MainActivity extends AppCompatActivity {
                         (subtractColumn[i] == 8 && subtractLine[i] == 3)||
                         (subtractColumn[i] == 8 && subtractLine[i] == 12) ||
                         (subtractColumn[i] == 8 && subtractLine[i] == 13)||
-                       (subtractColumn[i] == 9 && subtractLine[i] == 12)
+                       (subtractColumn[i] == 9 && subtractLine[i] == 12)||
+                        (subtractColumn[i] == 10 && subtractLine[i] == 12)
 
                 ){
             //checkNumber += "5";
@@ -993,58 +994,14 @@ public class MainActivity extends AppCompatActivity {
             result[8]=1;
         }
         else if(
-                (subtractColumn[i] == 10 && subtractLine[i] == 9)||
-                        (subtractColumn[i] == 7 && subtractLine[i] == 13)
+
+                        (subtractColumn[i] == 7 && subtractLine[i] == 13)||
+                             (subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                                (subtractColumn[i] == 10 && subtractLine[i] == 9)
                 ){
             result[0]=1;
             //checkNumber += "0";
         }
-        //2,3,4,5,6,7,8 (8,13)
-       /* else if (
-                subtractColumn[i] == 8 && subtractLine[i] == 13
-                ){
-            //checkNumber += "2/3/4/5/6/7/8";
-            result[2]=1;
-            result[3]=1;
-            result[4]=1;
-            result[5]=1;
-            result[6]=1;
-            result[7]=1;
-            result[8]=1;
-        }
-        //3,5,6,7 (9,12)
-        else if (
-                subtractColumn[i] == 9 && subtractLine[i] == 12
-                ){
-            //checkNumber += "3/5/6/7";
-            result[3]=1;
-            result[5]=1;
-            result[6]=1;
-            result[7]=1;
-        }
-        //4,7 (9,13)
-        else if (
-                subtractColumn[i] == 9 && subtractLine[i] == 13
-                ){
-            //checkNumber += "4/7";
-            result[4]=1;
-            result[7]=1;
-        }
-        //4,6,8 (10,12)
-        else if (
-                subtractColumn[i] == 10 && subtractLine[i] == 12
-                ){
-            //checkNumber += "4/6/8";
-            result[4]=1;
-            result[6]=1;
-            result[8]=1;
-        }
-        //4,6,7,8无法识别
-        else {
-            //checkNumber = checkNumber + "无法匹配";
-        }*/
-
-
         return result;
     }
 
@@ -1087,8 +1044,7 @@ public class MainActivity extends AppCompatActivity {
             result[3] = 1;
         }
         if(
-                ((test[number11][number41 - 3] == 0)&&(test[number11][number41 - 4] == 0))&&
-                        ((test[number11 - 1][number41 - 3] == 0)&&(test[number11 - 1][number41 - 4] == 0))&&
+                ((test[number11][number41 - 3] == 0)||(test[number11][number41 - 4] == 0))&&
                         ((test[number11 - 2][number41] == 0)&&(test[number11 - 2][number41 - 1] == 0))&&
                         ((test[number11 - 3][number41] == 0)&&(test[number11 - 3][number41 - 1] == 0))
                 )
