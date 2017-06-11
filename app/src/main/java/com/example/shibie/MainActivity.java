@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button=null;
     private Button button2=null;
 
-    private static int MAXARRAY=100;
+    private static int MAXARRAY=20;
     //这个MAXARRAY是最大的数组，建议填写为 识别的方法数*4
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -529,14 +529,14 @@ public class MainActivity extends AppCompatActivity {
             result[10]= identify3(subtractColumn,subtractLine,3);
             result[11]= identify3(subtractColumn,subtractLine,4);
 
-            //result[12]= identify4(test,1,number10,number11,number50,number51);
-            //result[13]= identify4(test,2,number20,number21,number60,number61);
-            //result[14]= identify4(test,3,number30,number31,number70,number71);
-            //result[15]= identify4(test,4,number40,number41,number80,number81);
+            result[12]= identify4(test,1,number10,number11,number50,number51);
+            result[13]= identify4(test,2,number20,number21,number60,number61);
+            result[14]= identify4(test,3,number30,number31,number70,number71);
+            result[15]= identify4(test,4,number40,number41,number80,number81);
 
             textView.setText(finalResult(result));
 
-            showRusult(result);
+            showResult(result);
 
             Log.d("clp",finalResult(result));
 
@@ -650,7 +650,7 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+4]>=15&&test2[i+4]<=28))
 
                 )   {
-            checkNumber=checkNumber+"1";
+            //checkNumber=checkNumber+"1";
             result[1]=1;
         }if(
                 ( (test2[i]>=23&&test2[i]<=28)&&
@@ -681,7 +681,7 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+3]>=23&&test2[i+3]<=27)&&
                         (test2[i+4]>=23&&test2[i+4]<=27)&&
                         (test2[i+5]>=15&&test2[i+5]<=27)&&
-                        (test2[i+6]>=15&&test2[i+6]<=16)&&
+                        (test2[i+6]>=15&&test2[i+6]<=25)&&
                         (test2[i+7]>=15&&test2[i+7]<=27))
                 ){
             result[4]=1;
@@ -700,10 +700,10 @@ public class MainActivity extends AppCompatActivity {
                 (test2[i]>=21&&test2[i]<=27)&&
                         (test2[i+1]>=17&&test2[i+1]<=22)&&
                         (test2[i+2]>=15&&test2[i+2]<=25)&&
-                        (test2[i+3]>=21&&test2[i+3]<=26)&&
+                        (test2[i+3]>=20&&test2[i+3]<=26)&&
                         (test2[i+4]>=23&&test2[i+4]<=27)&&
-                        (test2[i+5]>=22&&test2[i+5]<=27)&&
-                        (test2[i+6]>=17&&test2[i+6]<=26)&&
+                        (test2[i+5]>=20&&test2[i+5]<=27)&&
+                        (test2[i+6]>=16&&test2[i+6]<=26)&&
                         (test2[i+7]>=19&&test2[i+7]<=23)
                 ){
             result[6]=1;
@@ -722,7 +722,7 @@ public class MainActivity extends AppCompatActivity {
         }if(
                 ((test2[i]>=21&&test2[i]<=28)&&
                         (test2[i+1]>=17&&test2[i+1]<=21)&&
-                        (test2[i+2]>=17&&test2[i+2]<=19)&&
+                        (test2[i+2]>=17&&test2[i+2]<=23)&&
                         (test2[i+3]>=19&&test2[i+3]<=23)&&
                         (test2[i+4]>=23&&test2[i+4]<=25)&&
                         (test2[i+5]>=20&&test2[i+5]<=24)&&
@@ -738,7 +738,7 @@ public class MainActivity extends AppCompatActivity {
                         (test2[i+3]>=19&&test2[i+3]<=27)&&
                         (test2[i+4]>=25&&test2[i+4]<=27)&&
                         (test2[i+5]>=23&&test2[i+5]<=27)&&
-                        (test2[i+6]>=17&&test2[i+6]<=27)&&
+                        (test2[i+6]>=16&&test2[i+6]<=27)&&
                         (test2[i+7]>=18&&test2[i+7]<=25))
                 ){
             result[0]=1;
@@ -840,7 +840,7 @@ public class MainActivity extends AppCompatActivity {
         if(
                 (sumLine[flag][i] >= 3 && sumLine[flag][i] <= 8)&&
                         (sumLine[flag][i+1] >= 1 && sumLine[flag][i+1] <= 8)&&
-                        (sumLine[flag][i+2] >= 4 && sumLine[flag][i+2] <= 9)&&
+                        (sumLine[flag][i+2] >= 1 && sumLine[flag][i+2] <= 9)&&
                         (sumLine[flag][i+3] >= 5 && sumLine[flag][i+3] <= 8)&&
                         (sumLine[flag][i+4] >= 2 && sumLine[flag][i+4] <= 8)&&
                         (sumLine[flag][i+5] >= 0 && sumLine[flag][i+5] <= 3)&&
@@ -849,7 +849,7 @@ public class MainActivity extends AppCompatActivity {
                         (sumLine[flag][i+8] >= 3 && sumLine[flag][i+8] <= 5)&&
                         (sumLine[flag][i+9] >= 3 && sumLine[flag][i+9] <= 4)&&
                         (sumLine[flag][i+10] >= 3 && sumLine[flag][i+10] <= 5)&&
-                        (sumLine[flag][i+11] >= 2 && sumLine[flag][i+11] <= 6)&&
+                        (sumLine[flag][i+11] >= 1 && sumLine[flag][i+11] <= 6)&&
                         (sumLine[flag][i+12] >= 1 && sumLine[flag][i+12] <= 6)
 
                 ){
@@ -920,64 +920,78 @@ public class MainActivity extends AppCompatActivity {
 
         if(
                 (subtractColumn[i] == 6 && subtractLine[i] == 9)||
+                        (subtractColumn[i] == 6 && subtractLine[i] == 13)||
                         (subtractColumn[i] == 7 && subtractLine[i] == 9)
                 ) {
             //checkNumber += "1";
             result[1]=1;
         }
-        else if(
+        if(
                 //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
                         (subtractColumn[i] == 9 && subtractLine[i] == 9)
                 ) {
             result[2]=1;
             //checkNumber += "2";
         }
-        else if(
+        if(
                 (subtractColumn[i] == 7 && subtractLine[i] == 12)||
-                        (subtractColumn[i] == 7 && subtractLine[i] == 13)
-                        //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
-                        //(subtractColumn[i] == 9 && subtractLine[i] == 12)
+                        (subtractColumn[i] == 7 && subtractLine[i] == 13)||
+                        (subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                        (subtractColumn[i] == 9 && subtractLine[i] == 12)
 
                 ){
             //checkNumber += "3";
             result[3]=1;
         }
-        /*else if(
-                //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
-                        //(subtractColumn[i] == 9 && subtractLine[i] == 13)||
-                        //(subtractColumn[i] == 10 && subtractLine[i] == 12)
+        if(
+                (subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                        (subtractColumn[i] == 9 && subtractLine[i] == 13)||
+                        (subtractColumn[i] == 10 && subtractLine[i] == 12)||
+                        (subtractColumn[i] == 11 && subtractLine[i] == 12)
                 ){
-            checkNumber += "4";
-        }*/
-        else if (
-                (subtractColumn[i] == 8 && subtractLine[i] == 12)
-                        //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
-                       // (subtractColumn[i] == 9 && subtractLine[i] == 12)
+            //checkNumber += "4";
+            result[4]=1;
+        }
+        if (
+                (subtractColumn[i] == 7 && subtractLine[i] == 13)||
+                        (subtractColumn[i] == 8 && subtractLine[i] == 3)||
+                        (subtractColumn[i] == 8 && subtractLine[i] == 12) ||
+                        (subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                       (subtractColumn[i] == 9 && subtractLine[i] == 12)
+
                 ){
             //checkNumber += "5";
             result[5]=1;
 
         }
-        /*else if(
-               // (subtractColumn[i] == 8 && subtractLine[i] == 13)||
-                       // (subtractColumn[i] == 9 && subtractLine[i] == 12)||
-                        //(subtractColumn[i] == 10 && subtractLine[i] == 12)
+        if(
+                (subtractColumn[i] == 7 && subtractLine[i] == 13)||
+               (subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                        (subtractColumn[i] == 9 && subtractLine[i] == 12)||
+                        (subtractColumn[i] == 10 && subtractLine[i] == 12)
                 ){
-            checkNumber += "6";
-        }*/
-        /*else if(
-                //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
-                       // (subtractColumn[i] == 9 && subtractLine[i] == 12)||
-                       // (subtractColumn[i] == 9 && subtractLine[i] == 13)
+           // checkNumber += "6";
+            result[6]=1;
+        }
+        if(
+
+                (subtractColumn[i] == 7 && subtractLine[i] == 13)||
+                        (subtractColumn[i] == 8 && subtractLine[i] == 3)||
+                         (subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                        (subtractColumn[i] == 9 && subtractLine[i] == 12)||
+                       (subtractColumn[i] == 9 && subtractLine[i] == 13)
                 ){
-            checkNumber += "7";
-        }*/
-       /* else if(
-                //(subtractColumn[i] == 8 && subtractLine[i] == 13)||
-                        //(subtractColumn[i] == 10 && subtractLine[i] == 12)
+            //checkNumber += "7";
+            result[7]=1;
+        }
+        if(
+                (subtractColumn[i] == 7 && subtractLine[i] == 13)||
+                (subtractColumn[i] == 8 && subtractLine[i] == 13)||
+                        (subtractColumn[i] == 10 && subtractLine[i] == 12)
                 ){
-            checkNumber += "8";
-        }*/
+           // checkNumber += "8";
+            result[8]=1;
+        }
         else if(
                 (subtractColumn[i] == 10 && subtractLine[i] == 9)||
                         (subtractColumn[i] == 7 && subtractLine[i] == 13)
@@ -986,7 +1000,7 @@ public class MainActivity extends AppCompatActivity {
             //checkNumber += "0";
         }
         //2,3,4,5,6,7,8 (8,13)
-        else if (
+       /* else if (
                 subtractColumn[i] == 8 && subtractLine[i] == 13
                 ){
             //checkNumber += "2/3/4/5/6/7/8";
@@ -1028,7 +1042,7 @@ public class MainActivity extends AppCompatActivity {
         //4,6,7,8无法识别
         else {
             //checkNumber = checkNumber + "无法匹配";
-        }
+        }*/
 
 
         return result;
@@ -1052,25 +1066,37 @@ public class MainActivity extends AppCompatActivity {
             //checkNumber += "1";
             result[1]=1;
         }
-        /*else if(
-                ()
+         if(
+                 (test[number10 + (number11 - number10)/2][number41] == 0)&&
+                         (test[number10 + (number11- number10)/2][number41 -1] == 0)&&
+                         (test[number10][number40 + (number41 - number40)/2] == 1)
                 )
         {
-            checkNumber += "2";
+            //checkNumber += "2";
+            result[2] = 1;
         }
-        else if(
-                ()
+        if(
+                (test[number10 + (number11 - number10)/2][number40] == 0)&&
+                        (test[number10 + (number11 - number10)/2][number41] == 0)&&
+                        (test[number10][number40 + (number41 - number40)/2] == 1)&&
+                        ((test[number10][number41 - 2] == 0) || (test[number10][number41 -3] == 0))&&
+                        ((test[number10][number41 - 3] == 0)||(test[number10 + 1][number41 - 3] == 0)||(test[number10+2][number41 - 3] == 0))
                 )
         {
-            checkNumber += "3";
+            //checkNumber += "3";
+            result[3] = 1;
         }
-        else if(
-                ()
+        if(
+                ((test[number11][number41 - 3] == 0)&&(test[number11][number41 - 4] == 0))&&
+                        ((test[number11 - 1][number41 - 3] == 0)&&(test[number11 - 1][number41 - 4] == 0))&&
+                        ((test[number11 - 2][number41] == 0)&&(test[number11 - 2][number41 - 1] == 0))&&
+                        ((test[number11 - 3][number41] == 0)&&(test[number11 - 3][number41 - 1] == 0))
                 )
         {
-            checkNumber += "4";
-        }*/
-        else if(
+           // checkNumber += "4";
+            result[4] = 1;
+        }
+        if(
                 (test[number10+(number11 - number10)/2][number40] == 0 &&
                         test[number10+(number11 - number10)/2][number40+1] == 0)&&
                         (test[number10][number41] == 0 || test[number10][number41-1] == 0 ||
@@ -1082,13 +1108,16 @@ public class MainActivity extends AppCompatActivity {
             //checkNumber += "5";
             result[5]=1;
         }
-        /*else if(
-                ()
+        if(
+                ((test[number10][number40] == 1)&&(test[number10 + 1][number40] == 1))&&
+                        ((test[number10 + (number11 - number10)/2][number41] == 0))
+
                 )
         {
-            checkNumber += "6";
-        }*/
-        else if(
+            //checkNumber += "6";
+            result[6] =1;
+        }
+        if(
                 (test[number10+(number11 - number10)/2][number40] == 0 &&
                         test[number10+(number11 - number10)/2][number40+1] == 0)&&
                         (test[number10][number40] == 0 || test[number10][number40+1] == 0)&&
@@ -1099,13 +1128,20 @@ public class MainActivity extends AppCompatActivity {
             result[7]=1;
         }
 
-        /*else if(
-                ()
+        Log.d("clp", "identify4 8xia " + String.valueOf(test[number10 + (number11 - number10)/2][number41]));
+        Log.d("clp", "identify4 8shang " + String.valueOf(test[number10 + (number11 - number10)/2][number40] ));
+        Log.d("clp", "identify4 8zuo " + String.valueOf(test[number10][number40 + (number41 - number40)/2]));
+        Log.d("clp", "identify4 8you " + String.valueOf(test[number11][number40 + (number41 - number40)/2]));
+
+        if(
+                ((test[number10 + (number11 - number10)/2][number41] == 0)&&(test[number10 + (number11 - number10)/2][number40] == 0))&&
+                        ((test[number10][number40 + (number41 - number40)/2] == 1)&&(test[number11][number40 + (number41 - number40)/2] == 1))
                 )
         {
-            checkNumber += "8";
-        }*/
-        else if(
+           // checkNumber += "8";
+            result[8] = 1;
+        }
+        if(
                 (test[number10+(number11 - number10)/2][number40] == 0 &&
                         test[number10+(number11 - number10)/2][number41] == 0)&&
                         (test[number10][number40+(number41 - number40)/2] == 0 ||
@@ -1116,14 +1152,11 @@ public class MainActivity extends AppCompatActivity {
             //checkNumber += "0";
             result[0]=1;
         }
-        else{
-            //checkNumber += "无法识别";
-        }
 
         return result;
     }
 
-    private void showRusult(int result[][]){
+    private void showResult(int result[][]){
         String a="";
         for(int i=0;i<MAXARRAY;i++){
             for(int j=0;j<10;j++){
