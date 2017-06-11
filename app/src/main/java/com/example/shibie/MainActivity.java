@@ -1128,10 +1128,10 @@ public class MainActivity extends AppCompatActivity {
             result[7]=1;
         }
 
-        Log.d("clp", "identify4 8xia " + String.valueOf(test[number10 + (number11 - number10)/2][number41]));
-        Log.d("clp", "identify4 8shang " + String.valueOf(test[number10 + (number11 - number10)/2][number40] ));
-        Log.d("clp", "identify4 8zuo " + String.valueOf(test[number10][number40 + (number41 - number40)/2]));
-        Log.d("clp", "identify4 8you " + String.valueOf(test[number11][number40 + (number41 - number40)/2]));
+       // Log.d("clp", "identify4 8xia " + String.valueOf(test[number10 + (number11 - number10)/2][number41]));
+       // Log.d("clp", "identify4 8shang " + String.valueOf(test[number10 + (number11 - number10)/2][number40] ));
+       // Log.d("clp", "identify4 8zuo " + String.valueOf(test[number10][number40 + (number41 - number40)/2]));
+       // Log.d("clp", "identify4 8you " + String.valueOf(test[number11][number40 + (number41 - number40)/2]));
 
         if(
                 ((test[number10 + (number11 - number10)/2][number41] == 0)&&(test[number10 + (number11 - number10)/2][number40] == 0))&&
